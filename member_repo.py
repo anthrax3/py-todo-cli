@@ -45,8 +45,6 @@ class TextFileRepository(BaseRepository):
         result = result + "\n"
         return result
 
-
-        
     def save(self, member):    
         #self._f.seek(0,2)  # переход на конец файла
         if member is None:
@@ -57,6 +55,11 @@ class TextFileRepository(BaseRepository):
     def getAll(self):
         self._f.seek(0) # переход на начала файла
         result = self._f.readlines()
+        return result[1:]
+    
+    def getTitle(self):
+        self._f.seek(0) # переход на начала файла
+        result = self._f.readline()
         return result
     
     def findById(self, memberid):
