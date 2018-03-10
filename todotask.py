@@ -74,7 +74,14 @@ class ToDoList:
         return self._repo.getAll()
 
     def getTitle(self):
-        return self._repo.getTitle()
+        """
+            получить заголовок хранилища
+        """
+        str_title = self._repo.getTitle()
+        if str_title is None:
+            return None
+        result = str_title.split(";")
+        return result[:-1]
     """
     def __str__(self):
         return result
