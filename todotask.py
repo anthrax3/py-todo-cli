@@ -126,28 +126,30 @@ class ToDoList:
     например, ToDoTask("купить", "молоко\tхлеб\tчай")
     """
 # ---------------------
-t1 = ToDoTask("купить", "молоко")
-t2 = ToDoTask("прочитать Война и Мир")
-t3 = ToDoTask("заплатить за сервер 5$")
-t4 = ToDoTask("Заплатить за стоянку", "1500 рублей")
 
-title = ["сделано", "заголовок", "описание", "время создания"]
+if __name__ == "__main__":
+    t1 = ToDoTask("купить", "молоко")
+    t2 = ToDoTask("прочитать Война и Мир")
+    t3 = ToDoTask("заплатить за сервер 5$")
+    t4 = ToDoTask("Заплатить за стоянку", "1500 рублей")
 
-list_task = ToDoList("Ваsdfsdfжный список задач", title)
+    title = ["сделано", "заголовок", "описание", "время создания"]
 
-"""
-list_task.add(t1)
-time.sleep(1)
-list_task.add(t2)
-time.sleep(1)
-list_task.add(t3)
-time.sleep(1)
-list_task.add(t4)
-"""
-"""
-#t2.done()
-#list_task.add(t2)
-"""
-print(list_task.getAll())
-print(list_task.getTitle())
-print(list_task.getInfoList())
+    list_task = ToDoList("Важный список задач", title)
+
+    """
+    list_task.add(t1)
+    time.sleep(1)
+    list_task.add(t2)
+    time.sleep(1)
+    list_task.add(t3)
+    time.sleep(1)
+    list_task.add(t4)
+    """
+    """
+    #t2.done()
+    #list_task.add(t2)
+    """
+    print(list_task.getAll())
+    print(list_task.getTitle())
+    print(list_task.getInfoList())
