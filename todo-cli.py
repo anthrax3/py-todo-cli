@@ -2,7 +2,7 @@ import click
 
 @click.command()
 @click.argument('task')
-@click.option('--api-key', '-a', default='15874',prompt='Your name', help='description api keys')
+@click.option('--api-key', '-a', default='15874', prompt='Your name', help='description api keys')
 def main(task, api_key):
     """
         Tool CLI for manage with our tasks and checklists
