@@ -1,7 +1,6 @@
 from datetime import datetime
-# import time
 
-from member_repo import BaseRepository, TextFileRepository, SqliteRepository, ArrayRepository
+from member_repo import TextFileRepository
 
 
 class ToDoTask:
@@ -60,12 +59,13 @@ class ToDoTask:
 
 
 class ToDoList:    
-    def __init__(self, title_task, title, desc_task="", flag_done=False, time_create=datetime.now(), namefile="mylist_todo.txt"):
+    def __init__(self, title_task="", title=[], desc_task="", flag_done=False, time_create=datetime.now(), namefile="mylist_todo.txt"):
         self._repo = TextFileRepository(title, namefile)  # модель для сохранения списка дел на физическом уровне
         self._title = self._getTitle()        # заголовок таблицы
         self._list = self._getAll()         # список дел
         # здесь нужно проверить на наличие файла 
-        self._todo = self._setInfoList(title_task, desc_task, flag_done, time_create)  # описание и служебная информация списка задач
+        # описание и служебная информация списка задач
+        self._todo = self._setInfoList(title_task, desc_task, flag_done, time_create)  
     
     def _setInfoList(self, title_task, desc_task="", flag_done=False, time_create=datetime.now()):
 
