@@ -1,10 +1,9 @@
 from datetime import datetime
 
-from member_repo import TextFileRepository
+from todotask.member_repo import TextFileRepository
 
 
 class ToDoTask:
-
     def __init__(self, title_task, desc_task="", flag_done=False, time_create=datetime.now()):
         """
             flag_done   - признак сделана/не сделана задача (True/False)
@@ -58,7 +57,7 @@ class ToDoTask:
         return result
 
 
-class ToDoList:    
+class ToDoList:
     def __init__(self, title_task="", title=[], desc_task="", flag_done=False, time_create=datetime.now(), namefile="mylist_todo.txt"):
         self._repo = TextFileRepository(title, namefile)  # модель для сохранения списка дел на физическом уровне
         self._title = self._getTitle()        # заголовок таблицы
@@ -127,6 +126,7 @@ class ToDoList:
     """
 # ---------------------
 
+"""
 if __name__ == "__main__":
     t1 = ToDoTask("купить", "молоко")
     t2 = ToDoTask("прочитать Война и Мир")
@@ -137,7 +137,7 @@ if __name__ == "__main__":
 
     list_task = ToDoList("Важный список задач", title)
 
-    """
+
     list_task.add(t1)
     time.sleep(1)
     list_task.add(t2)
@@ -145,11 +145,11 @@ if __name__ == "__main__":
     list_task.add(t3)
     time.sleep(1)
     list_task.add(t4)
-    """
-    """
+
     #t2.done()
     #list_task.add(t2)
-    """
+
     print(list_task.getAll())
     print(list_task.getTitle())
     print(list_task.getInfoList())
+"""

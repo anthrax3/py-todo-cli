@@ -72,7 +72,7 @@ class SqliteRepository(BaseRepository):
 class ArrayRepository(BaseRepository):
     pass
 
-
+"""
 if __name__ == "__main__":
     print("Run as main programm")
     t1 = "Task number one;1;-2\n"
@@ -81,3 +81,4 @@ if __name__ == "__main__":
     export_txt = TextFileRepository(title)
     export_txt.save(t2)
     print(export_txt.getAll())
+"""
