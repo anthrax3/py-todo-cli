@@ -1,10 +1,13 @@
+import time
 from datetime import datetime
 
 from todotask.member_repo import TextFileRepository
 
 
 class ToDoTask:
-    def __init__(self, title_task, desc_task="", flag_done=False, time_create=datetime.now()):
+    def __init__(
+            self, title_task, desc_task="", flag_done=False,
+            time_create=datetime.now()):
         """
             flag_done   - признак сделана/не сделана задача (True/False)
             title_task  - заголовок задачи
@@ -18,13 +21,13 @@ class ToDoTask:
 
     def done(self):
         """
-            Make Task is Done     
+            Make Task is Done
         """
         self._flag_done = True
 
     def undone(self):
         """
-            Make Task is UnDone        
+            Make Task is UnDone
         """
         self._flag_done = False
 
@@ -36,7 +39,8 @@ class ToDoTask:
             flag_done = '1'
         else:
             flag_done = '0'
-        strs = [flag_done, self._title_task, self._desc_task, str(self._time_create)]
+        strs = [flag_done, self._title_task, self._desc_task,
+                str(self._time_create)]
         return strs
 
     def __str__(self):
@@ -44,7 +48,9 @@ class ToDoTask:
             flag_done = '[x]'
         else:
             flag_done = '[ ]'
-        result = "{0} : {1} - {2} - {3}".format(flag_done, self._title_task, self._desc_task, self._time_create)
+        result = "{0} : {1} - {2} - {3}".format(
+                flag_done, self._title_task,
+                self._desc_task, self._time_create)
         return result
 
     def __repr__(self):
@@ -52,36 +58,46 @@ class ToDoTask:
             flag_done = '[x]'
         else:
             flag_done = '[ ]'
-        result = "{0}  {1} - {2} - {3}".format(flag_done, self._title_task, self._desc_task, self._time_create)
+        result = "{0}  {1} - {2} - {3}".format(
+                flag_done, self._title_task,
+                self._desc_task, self._time_create)
 
         return result
 
 
 class ToDoList:
-    def __init__(self, title_task="", title=[], desc_task="", flag_done=False, time_create=datetime.now(), namefile="mylist_todo.txt"):
-        self._repo = TextFileRepository(title, namefile)  # модель для сохранения списка дел на физическом уровне
+    def __init__(
+            self, title_task="", title=[], desc_task="", flag_done=False,
+            time_create=datetime.now(), namefile="mylist_todo.txt"):
+        # модель для сохранения списка дел на физическом уровне
+        self._repo = TextFileRepository(title, namefile)
         self._title = self._getTitle()        # заголовок таблицы
         self._list = self._getAll()         # список дел
-        # здесь нужно проверить на наличие файла 
+        # здесь нужно проверить на наличие файла
         # описание и служебная информация списка задач
-        self._todo = self._setInfoList(title_task, desc_task, flag_done, time_create)  
-    
-    def _setInfoList(self, title_task, desc_task="", flag_done=False, time_create=datetime.now()):
+        self._todo = self._setInfoList(
+                                        title_task, desc_task,
+                                        flag_done, time_create)
+
+    def _setInfoList(
+                    self, title_task, desc_task="",
+                    flag_done=False, time_create=datetime.now()):
 
         all_todo = self._getAll()
         if len(all_todo) == 0:
             result = ToDoTask(title_task, desc_task, flag_done, time_create)
             self._repo.save(result.getlist())
         else:
-            result = all_todo[0]  # первая строка после заголовка это информация о самом списке задач
-        return result     
+            # первая строка после заголовка - информация о самом списке задач
+            result = all_todo[0]
+        return result
 
     def add(self, task):
         if not isinstance(task, ToDoTask):
             raise Exception()
         self._list.append(task)
         self._repo.save(task.getlist())
-    
+
     def getAll(self):
         return self._list[1:]
 
@@ -102,14 +118,15 @@ class ToDoList:
 
     def _getAll(self):
         """
-            
+
         """
         result = []
         list_all = self._repo.getAll()
         # list_all = list_all[1:]
         for el in list_all:
             elm = el.split(";")
-            result.append(ToDoTask(elm[1], elm[2], self._getFlagDone(elm[0]), elm[3]))
+            result.append(
+                ToDoTask(elm[1], elm[2], self._getFlagDone(elm[0]), elm[3]))
         return result
 
     def _getTitle(self):
@@ -126,7 +143,7 @@ class ToDoList:
     """
 # ---------------------
 
-"""
+
 if __name__ == "__main__":
     t1 = ToDoTask("купить", "молоко")
     t2 = ToDoTask("прочитать Война и Мир")
@@ -137,7 +154,6 @@ if __name__ == "__main__":
 
     list_task = ToDoList("Важный список задач", title)
 
-
     list_task.add(t1)
     time.sleep(1)
     list_task.add(t2)
@@ -146,10 +162,9 @@ if __name__ == "__main__":
     time.sleep(1)
     list_task.add(t4)
 
-    #t2.done()
-    #list_task.add(t2)
+    # t2.done()
+    # list_task.add(t2)
 
     print(list_task.getAll())
     print(list_task.getTitle())
     print(list_task.getInfoList())
-"""

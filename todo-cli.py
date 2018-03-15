@@ -1,7 +1,7 @@
 import click
 import os
 
-from todotask.todotask import ToDoTask, ToDoList
+from todotask.todotask import ToDoList
 
 
 # https://pythlife.blogspot.ru/2016/03/init-py-file-packages.html
@@ -9,15 +9,16 @@ from todotask.todotask import ToDoTask, ToDoList
 
 """
     TODO:
-    * вывод название всех списков 
+    * вывод название всех списков
     * вывод дел в конктретном списке
     * создание списка дел в текущем списке дел
-    * указать текущий список дел   
-    * указать признак выполнения задачи 
+    * указать текущий список дел
+    * указать признак выполнения задачи
     * указать признак выполнения всего списка задач
 """
+# путь в котором хранятся списки задач
+path_task = "data/mytasks/"
 
-path_task = "data/mytasks/"  #  путь в котором хранятся списки задач
 
 def getListLists(path):
     """
@@ -33,9 +34,8 @@ def getListLists(path):
 
 
 @click.command()
-#@click.argument('task')
+# @click.argument('task')
 @click.option('--ls-list', '-lsl', is_flag=True, help='get list all todo lists')
-#@click.option('--ls-list', '-lsl', help='get list all todo lists')
 def main(ls_list):
     """
         Tool CLI for manage with our tasks and checklists
